@@ -8,7 +8,6 @@ on:
   schedule:
     - cron: '50 22 * * *'
 
-
 jobs:
   ibm-cloud-restart:
     runs-on: ubuntu-latest
@@ -25,7 +24,7 @@ jobs:
         REGION_NUM: ${{ secrets.REGION_NUM }}
       run: |
         pwd
-        /home/runner/work/IBMv2y-004/IBMv2y-004/IBM_Cloud_CLI/ibmcloud login <<EOF
+        /home/runner/work/IBMYes/IBMYes/IBM_Cloud_CLI/ibmcloud login <<EOF
         $IBM_ACCOUNT
         $REGION_NUM
         no
@@ -37,12 +36,12 @@ jobs:
       run: |
         rm -rf v2ray-cloudfoundry
         git clone https://github.com/tvision08/v2ray-cloudfoundry.git
-        chmod +x /home/runner/work/IBMv2y-004/IBMv2y-004/v2ray-cloudfoundry/v2ray/*
+        chmod +x /home/runner/work/IBMYes/IBMYes/v2ray-cloudfoundry/v2ray/*
         cd v2ray-cloudfoundry
-        sed -i "s/GetStartedGo/${{ secrets.IBM_APP_NAME }}/g"  /home/runner/work/IBMv2y-004/IBMv2y-004/v2ray-cloudfoundry/manifest.yml
-        sed -i "s/8c35bef3-d51f-41ab-ac87-7b053410495b/${{ secrets.UUID }}/g"  /home/runner/work/IBMv2y-004/IBMv2y-004/v2ray-cloudfoundry/v2ray/config.json
-        sed -i "s/128/256/g"  /home/runner/work/IBMv2y-004/IBMv2y-004/v2ray-cloudfoundry/manifest.yml
-        /home/runner/work/IBMv2y-004/IBMv2y-004/IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
-        /home/runner/work/IBMv2y-004/IBMv2y-004/IBM_Cloud_CLI/ibmcloud target --cf
-        /home/runner/work/IBMv2y-004/IBMv2y-004/IBM_Cloud_CLI/ibmcloud cf install
-        /home/runner/work/IBMv2y-004/IBMv2y-004/IBM_Cloud_CLI/ibmcloud cf push
+        sed -i "s/GetStartedGo/${{ secrets.IBM_APP_NAME }}/g"  /home/runner/work/IBMYes/IBMYes/v2ray-cloudfoundry/manifest.yml
+        sed -i "s/8c35bef3-d51f-41ab-ac87-7b053410495b/${{ secrets.UUID }}/g"  /home/runner/work/IBMYes/IBMYes/v2ray-cloudfoundry/v2ray/config.json
+        sed -i "s/128/256/g"  /home/runner/work/IBMYes/IBMYes/v2ray-cloudfoundry/manifest.yml
+        /home/runner/work/IBMYes/IBMYes/IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
+        /home/runner/work/IBMYes/IBMYes/IBM_Cloud_CLI/ibmcloud target --cf
+        /home/runner/work/IBMYes/IBMYes/IBM_Cloud_CLI/ibmcloud cf install
+        /home/runner/work/IBMYes/IBMYes/IBM_Cloud_CLI/ibmcloud cf push
